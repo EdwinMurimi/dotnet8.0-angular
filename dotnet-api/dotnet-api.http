@@ -1,0 +1,19 @@
+@dotnet_api_HostAddress = http://localhost:5178
+
+POST {{dotnet_api_HostAddress}}/api/Item/
+Accept: application/json
+
+{
+  "id": 0,
+  "name": "string",
+  "description": "string",
+  "price": 0,
+  "quantity": 0,
+  "category": "string",
+  "createdAt": "2024-04-24T18:14:18.941Z",
+  "imageUrl": "string"
+}
+
+###
+
+GET http://localhost:5178/api/Item
