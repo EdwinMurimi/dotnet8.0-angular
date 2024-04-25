@@ -12,6 +12,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IItemRepository, ItemRepository>();
 builder.Services.AddSingleton<IItemService, ItemService>();
 
+// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -24,6 +33,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Apply CORS policy
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
