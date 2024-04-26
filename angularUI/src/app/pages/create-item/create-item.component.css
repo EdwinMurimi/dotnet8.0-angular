@@ -1,0 +1,27 @@
+input, textarea, select {
+    background: #f9fafb; /* light gray */
+    border: 1px solid #d1d5db; /* gray */
+    color: #111827; /* very dark gray */
+    font-size: 14px; /* equivalent to Tailwind's text-sm */
+    border-radius: 0.5rem; /* equivalent to Tailwind's rounded-lg */
+    padding: 0.625rem; /* 10px */
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #171718; /* blue */
+    box-shadow: 0 0 0 0.5px #161616; /* simulate the ring effect */
+}
+
+.dark input, .dark textarea, .dark select {
+    background: #374151; /* dark gray */
+    border-color: #4b5563; /* darker gray */
+    color: #f9fafb; /* off white */
+}
+
+.dark input:focus, .dark textarea:focus, .dark select:focus {
+    border-color: #6366f1; /* purple */
+    box-shadow: 0 0 0 8px #818cf8; /* simulate the dark mode ring effect */
+}
