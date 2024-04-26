@@ -1,0 +1,213 @@
+<div class="mt-24">
+    <form 
+        class="max-w-lg mx-auto p-4"
+        [formGroup]="createItemForm"
+        (ngSubmit)="createItem()"
+        novalidate
+    >
+        <div class="relative z-0 w-full mb-5 group">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name <span class="text-red-600">*</span></label>
+            <input 
+                type="text"
+                id="name"
+                formControlName="name"
+                aria-describedby="name-help name-required-error name-minimum-length-error"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="e.g. Samsung Galaxy Tab"
+                required
+            />
+            <p id="name-help" class="text-[10px] text-gray-600 dark:text-gray-400">This is the name of the item you need to keep track on.</p>
+            <p
+                *ngIf="createItemForm.get('name')?.errors?.['required'] && createItemForm.get('name')?.touched" 
+                id="name-required-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('name')?.touched || !createItemForm.get('name')?.errors?.['required']"
+            >
+                <span class="font-medium">Oh, snap!</span> Name is required.
+            </p>
+            <p
+                *ngIf="createItemForm.get('name')?.errors?.['minlength'] && createItemForm.get('name')?.touched"
+                id="name-minimum-length-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('name')?.touched || !createItemForm.get('name')?.errors?.['minlength']"
+            >
+                <span class="font-medium">Oh, snap!</span> Name must be at least 3 characters long.
+            </p>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description <span class="text-red-600">*</span></label>
+            <textarea
+                id="description"
+                formControlName="description"
+                rows="4"
+                aria-describedby="description-help description-required-error description-minimum-length-error description-maximum-length-error"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="e.g. Samsung Galaxy Tab offers a vibrant display, long-lasting battery life, and powerful performance, perfect for both entertainment and productivity...."
+                required
+            ></textarea>
+            <p id="description-help" class="text-[10px] text-gray-600 dark:text-gray-400">Describe your item in-depth within this input.</p>
+            <p
+                *ngIf="createItemForm.get('description')?.errors?.['required'] && createItemForm.get('description')?.touched" 
+                id="description-required-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('description')?.touched || !createItemForm.get('description')?.errors?.['required']"
+            >
+                <span class="font-medium">Oh, snap!</span> Description is required.
+            </p>
+            <p
+                *ngIf="createItemForm.get('description')?.errors?.['minlength'] && createItemForm.get('description')?.touched"
+                id="description-minimum-length-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('description')?.touched || !createItemForm.get('description')?.errors?.['minlength']"
+            >
+                <span class="font-medium">Oh, snap!</span> Description must be at least 10 characters long.
+            </p>
+            <p
+                *ngIf="createItemForm.get('description')?.errors?.['maxlength'] && createItemForm.get('description')?.touched"
+                id="description-maximum-length-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('description')?.touched || !createItemForm.get('description')?.errors?.['maxlength']"
+            >
+                <span class="font-medium">Oh, snap!</span> Description must not exceed 255 characters.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price <span class="text-red-600">*</span></label>
+                <input
+                    type="number"
+                    id="price"
+                    min="0"
+                    formControlName="price"
+                    aria-describedby="price-help price-required-error price-pattern-error price-minimum-error"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="e.g. 10.25"
+                    required
+                />
+                <p id="price-help" class="text-[10px] text-gray-600 dark:text-gray-400">Your item's price.</p>
+                <p
+                    *ngIf="createItemForm.get('price')?.errors?.['required'] && createItemForm.get('price')?.touched" 
+                    id="price-required-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('price')?.touched || !createItemForm.get('price')?.errors?.['required']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Price is required.
+                </p>
+                <p
+                    *ngIf="createItemForm.get('price')?.errors?.['pattern'] && createItemForm.get('price')?.touched"
+                    id="price-pattern-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('price')?.touched || !createItemForm.get('price')?.errors?.['pattern']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Price must be a valid number.
+                </p>
+                <p
+                    *ngIf="createItemForm.get('price')?.errors?.['min'] && createItemForm.get('price')?.touched"
+                    id="price-minimum-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('price')?.touched || !createItemForm.get('price')?.errors?.['min']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Minimum price allowed is 0.01.
+                </p>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity <span class="text-red-600">*</span></label>
+                <input
+                    type="number"
+                    id="quantity"
+                    min="0"
+                    formControlName="quantity"
+                    aria-describedby="quantity-help quantity-required-error quantity-pattern-error quantity-minimum-error"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="e.g. 100"
+                    required
+                />
+                <p id="quantity-help" class="text-[10px] text-gray-600 dark:text-gray-400">Your item's quantity.</p>
+                <p
+                    *ngIf="createItemForm.get('quantity')?.errors?.['required'] && createItemForm.get('quantity')?.touched" 
+                    id="quantity-required-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('quantity')?.touched || !createItemForm.get('quantity')?.errors?.['required']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Quantity is required.
+                </p>
+                <p
+                    *ngIf="createItemForm.get('quantity')?.errors?.['pattern'] && createItemForm.get('quantity')?.touched"
+                    id="quantity-pattern-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('quantity')?.touched || !createItemForm.get('quantity')?.errors?.['pattern']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Quantity must be a valid number.
+                </p>
+                <p
+                    *ngIf="createItemForm.get('quantity')?.errors?.['min'] && createItemForm.get('quantity')?.touched"
+                    id="quantity-minimum-error"
+                    class="mt-1 text-xs text-red-600 dark:text-red-500"
+                    [attr.aria-hidden]="!createItemForm.get('quantity')?.touched || !createItemForm.get('quantity')?.errors?.['min']"
+                >
+                    <span class="font-medium">Oh, snap!</span> Minimum quantity allowed is 1.
+                </p>
+            </div>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category <span class="text-red-600">*</span></label>
+            <select
+                id="category"
+                formControlName="category"
+                aria-describedby="category-help category-required-error"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+            >
+                <option value="" disabled selected>Choose a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books">Books</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Home and Garden">Home and Garden</option>
+                <option value="Services">Services</option>
+                <option value="Other">Other</option>
+            </select>
+            <p id="category-help" class="text-[10px] text-gray-600 dark:text-gray-400">Your item's category.</p>
+            <p
+                *ngIf="createItemForm.get('category')?.errors?.['required'] && createItemForm.get('category')?.touched" 
+                id="category-required-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('imageURL')?.touched || !createItemForm.get('imageURL')?.errors?.['required']"
+            >
+                <span class="font-medium">Oh, snap!</span> Category is required.
+            </p>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label for="imageURL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL <span class="text-red-600">*</span></label>
+            <input
+                type="imageURL"
+                id="imageURL"
+                formControlName="imageURL"
+                aria-describedby="image-url-help image-url-required-error image-url-pattern-error"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="e.g. https://example.com/image.png"
+                required
+            />
+            <p id="image-url-help" class="text-[10px] text-gray-600 dark:text-gray-400">Your item's image link.</p>
+            <p
+                *ngIf="createItemForm.get('imageURL')?.errors?.['required'] && createItemForm.get('imageURL')?.touched" 
+                id="image-url-required-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('imageURL')?.touched || !createItemForm.get('imageURL')?.errors?.['required']"
+            >
+                <span class="font-medium">Oh, snap!</span> Image link is required.
+            </p>
+            <p
+                *ngIf="createItemForm.get('imageURL')?.errors?.['pattern'] && createItemForm.get('imageURL')?.touched"
+                id="image-url-pattern-error"
+                class="mt-1 text-xs text-red-600 dark:text-red-500"
+                [attr.aria-hidden]="!createItemForm.get('imageURL')?.touched || !createItemForm.get('imageURL')?.errors?.['pattern']"
+            >
+                <span class="font-medium">Oh, snap!</span> Image link must be a `http` link.
+            </p>
+        </div>
+        <button
+            type="submit"
+            class="text-white bg-goodies-primary-color focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-goodies-primary-color"
+        >Create new item</button>
+    </form>
+</div>
